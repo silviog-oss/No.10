@@ -36,6 +36,7 @@
   }
 
   *{box-sizing:border-box;margin:0;padding:0}
+  html,body{overflow-x:hidden;max-width:100%}
   html{scroll-behavior:smooth}
   body{
     font-family:var(--sans);
@@ -183,8 +184,8 @@
     transition:transform .25s,box-shadow .25s;
   }
   .card:hover{transform:translateY(-4px);box-shadow:0 18px 40px -24px rgba(59,50,44,.5)}
-  .card .top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
-  .card h3{font-family:var(--serif);font-size:1.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--espresso)}
+  .card .top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+  .card h3{font-family:var(--serif);font-size:1.6rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--espresso);min-width:0;overflow-wrap:break-word;hyphens:auto}
   .card .price{font-family:var(--serif);font-size:1.55rem;color:var(--bronze-deep);white-space:nowrap;font-weight:500}
   .card .kind{font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--bronze-deep);margin:8px 0 16px;font-weight:500}
   .card .desc{font-family:var(--serif);font-style:italic;font-size:1.12rem;color:#57493d;line-height:1.5}
@@ -246,6 +247,35 @@
   footer .flinks a:hover{opacity:1}
   footer .copy{font-size:.72rem;color:#7a6f5f;letter-spacing:.06em}
 
+
+  /* --- card photos --- */
+  .card{overflow:hidden}
+  .card-photo{margin:-34px -32px 24px;height:210px;overflow:hidden;background:#e8ddc9}
+  .card-photo img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+  .card:hover .card-photo img{transform:scale(1.04)}
+  .card-photo.branded{display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(135deg,#efe7d6,#e0d3ba)}
+  .card-photo.branded svg{width:88px;height:22px;color:var(--bronze-deep);opacity:.8}
+  /* --- hero logo badge --- */
+  .hero .brand-badge{width:clamp(150px,34vw,215px);margin:6px auto 2px;
+    filter:drop-shadow(0 10px 24px rgba(0,0,0,.35))}
+
+
+  @media(max-width:480px){
+    .wrap{padding:0 20px}
+    section{padding:64px 0}
+    .card{padding:26px 22px}
+    .card-photo{margin:-26px -22px 20px;height:190px}
+    .card-photo.branded svg{width:72px}
+    .card h3{font-size:1.4rem;letter-spacing:.03em}
+    .card .price{font-size:1.35rem}
+    .card .meta .row{grid-template-columns:96px 1fr}
+    .pkg{padding:22px 20px}
+    .sec-head{margin-bottom:40px}
+    .inc-grid{gap:16px}
+    .hero{padding:84px 20px 72px}
+  }
+
   a:focus-visible,button:focus-visible{outline:2px solid var(--bronze);outline-offset:3px}
   @media(prefers-reduced-motion:reduce){
     .reveal{opacity:1;transform:none;transition:none}
@@ -277,7 +307,7 @@
 <section class="hero" id="top">
   <div class="wrap reveal">
     <div class="year">2026</div>
-    <div class="brand-script">No.10</div>
+    <img class="brand-badge" src="assets/images/logo.png" alt="No.10 BC — Skincare is Selfcare" />
     <div class="flourish">
       <span class="rule"></span>
       <svg viewBox="0 0 64 16" fill="none" stroke="currentColor" stroke-width="1"><path d="M2 8h14M48 8h14M20 8c2-4 6-4 8 0s6 4 8 0"/><circle cx="32" cy="8" r="1.4" fill="currentColor" stroke="none"/></svg>
@@ -306,6 +336,7 @@
 
     <div class="svc-grid">
       <article class="card reveal">
+        <div class="card-photo branded"><svg viewBox="0 0 64 16" fill="none" stroke="currentColor" stroke-width="1"><path d="M2 8h14M48 8h14M20 8c2-4 6-4 8 0s6 4 8 0"/><circle cx="32" cy="8" r="1.4" fill="currentColor" stroke="none"/></svg></div>
         <div class="top"><h3>Skin Detox</h3><span class="price">$490</span></div>
         <div class="kind">Limpieza facial profunda</div>
         <p class="desc">Facial enfocado en la máxima extracción de impurezas (punto negro, filamento seborreico, milium, pústulas y comedones), desobstruyendo los poros de residuos y suciedad para mayor oxigenación de la piel.</p>
@@ -317,6 +348,7 @@
       </article>
 
       <article class="card reveal">
+        <div class="card-photo"><img src="assets/images/radiance-boost.jpg" alt="Aparatología para facial hidratante" loading="lazy" /></div>
         <div class="top"><h3>Radiance Boost</h3><span class="price">$599</span></div>
         <div class="kind">Facial hidratante</div>
         <p class="desc">Tratamiento que penetra un cóctel de activos hidratantes y humectantes, para mantener la hidratación de la piel y recuperar la vitalidad.</p>
@@ -328,6 +360,7 @@
       </article>
 
       <article class="card reveal">
+        <div class="card-photo"><img src="assets/images/repair-facial.jpg" alt="Equipo de terapia fría" loading="lazy" /></div>
         <div class="top"><h3>Repair Facial</h3><span class="price">$580</span></div>
         <div class="kind">Facial reparador</div>
         <p class="desc">Tratamiento enfocado en reforzar la barrera cutánea, aplicando activos calmantes, reparadores, desinflamatorios y descongestivos con la técnica de terapia fría.</p>
@@ -339,6 +372,7 @@
       </article>
 
       <article class="card reveal">
+        <div class="card-photo branded"><svg viewBox="0 0 64 16" fill="none" stroke="currentColor" stroke-width="1"><path d="M2 8h14M48 8h14M20 8c2-4 6-4 8 0s6 4 8 0"/><circle cx="32" cy="8" r="1.4" fill="currentColor" stroke="none"/></svg></div>
         <div class="top"><h3>Acne Control</h3><span class="price">$619</span></div>
         <div class="kind">Facial anti-acné</div>
         <p class="desc">Procedimiento facial especializado para tratar la inflamación y las lesiones provocadas por el acné, controlando el exceso de sebo para evitar nuevos brotes, unificar y recuperar la barrera de la piel.</p>
@@ -366,7 +400,8 @@
 
     <div class="svc-grid">
       <article class="card reveal">
-        <div class="top"><h3>Microdermoabrasión</h3><span class="price">$629</span></div>
+        <div class="card-photo"><img src="assets/images/microdermoabrasion.jpg" alt="Punta de microdermoabrasión" loading="lazy" /></div>
+        <div class="top"><h3>Microdermo&shy;abrasión</h3><span class="price">$629</span></div>
         <div class="kind">Facial exfoliante</div>
         <p class="desc">Tratamiento estético no invasivo que exfolia a profundidad la capa de la piel para mejorar la textura, el tono y la luminosidad.</p>
         <div class="meta">
@@ -377,6 +412,7 @@
       </article>
 
       <article class="card reveal">
+        <div class="card-photo"><img src="assets/images/pro-age.jpg" alt="Radiofrecuencia estimuladora" loading="lazy" /></div>
         <div class="top"><h3>Pro-Age</h3><span class="price">$595</span></div>
         <div class="kind">Facial nutritivo</div>
         <p class="desc">Facial que trabaja con un boost de vitaminas, antioxidantes y nutrientes, dejando un efecto revitalizante, reafirmante y estimulante. Trata las arrugas.</p>
@@ -388,6 +424,7 @@
       </article>
 
       <article class="card reveal">
+        <div class="card-photo"><img src="assets/images/renewal.jpg" alt="Aplicación de exfoliación química" loading="lazy" /></div>
         <div class="top"><h3>Renewal</h3><span class="price">$635</span></div>
         <div class="kind">Facial renovador-aclarante</div>
         <p class="desc">Exfoliación química que elimina las capas superficiales muertas para estimular la renovación celular y la producción de colágeno y elastina, entre otros.</p>
@@ -399,6 +436,7 @@
       </article>
 
       <article class="card reveal">
+        <div class="card-photo"><img src="assets/images/microneedling.jpg" alt="Dermapen para inducción de colágeno" loading="lazy" /></div>
         <div class="top"><h3>Microneedling</h3><span class="price">$1,199</span></div>
         <div class="kind">Inducción de colágeno</div>
         <p class="desc">Tratamiento que realiza microcanales o micro-lesiones en la piel para estimular el tejido y potenciar la absorción de activos.</p>
@@ -425,6 +463,7 @@
 
     <div class="svc-grid">
       <article class="card reveal">
+        <div class="card-photo"><img src="assets/images/corpo-detox.jpg" alt="Exfoliación corporal profunda" loading="lazy" /></div>
         <div class="top"><h3>Corpo Detox</h3><span class="price">$875</span></div>
         <div class="kind">Limpieza corporal</div>
         <p class="desc">Tratamiento enfocado en la máxima extracción de impurezas; elimina células muertas, grasa y puntos negros de áreas específicas del cuerpo.</p>
@@ -435,6 +474,7 @@
       </article>
 
       <article class="card reveal">
+        <div class="card-photo"><img src="assets/images/serenity.jpg" alt="Ambiente de masaje relajante" loading="lazy" /></div>
         <div class="top"><h3>Serenity</h3><span class="price">$815</span></div>
         <div class="kind">Masaje relajante</div>
         <p class="desc">Técnicas relajantes y descontracturantes que alivian la tensión muscular, reducen el estrés y la ansiedad, promoviendo un estado general de bienestar físico y mental.</p>
@@ -445,6 +485,7 @@
       </article>
 
       <article class="card reveal">
+        <div class="card-photo"><img src="assets/images/tone-body.jpg" alt="Tratamiento aclarante corporal" loading="lazy" /></div>
         <div class="top"><h3>Tone Body</h3><span class="price">$799</span></div>
         <div class="kind">Tratamiento aclarante</div>
         <p class="desc">Unifica el tono de la piel, reduce manchas oscuras y aclara áreas hiperpigmentadas, actuando sobre la producción de melanina para una piel más uniforme y luminosa.</p>
